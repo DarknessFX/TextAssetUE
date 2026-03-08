@@ -10,7 +10,7 @@
     | '--------------' || '--------------' || '--------------' |
      '----------------'  '----------------'  '----------------' 
 
-           DarknessFX @ https://dfx.lv | Twitter: @DrkFX
+           DarknessFX @ https://dfx.lv | X: @DrkFX
 
 # TextAssetUE
 
@@ -46,9 +46,10 @@ I kept the TextAsset plugin alive through multiple Unreal Engine versions, until
 
 TextAssetUE plugin exists thanks to the original **TextAsset** by **ue4plugins** (https://github.com/ue4plugins/TextAsset).
 
-Huge respect and gratitude to the author for creating such a useful tool plugin in the UE4 days.
+Huge respect and gratitude to the author for creating such a useful plugin in the UE4 days.
 
 ## Run as Sample uproject
+
 1. Download or clone this repo
 2. Right-click the TextAssetUE_Sample.uproject and Generate Project Files.
 3. Open the TextAssetUE_Sample.sln
@@ -66,4 +67,4 @@ Huge respect and gratitude to the author for creating such a useful tool plugin 
 ## License
 
 @MIT - Free for everyone and any use. <br/><br/>
-DarknessFX @ <a href="https://dfx.lv" target="_blank">https://dfx.lv</a> | X: <a href="https://twitter.com/DrkFX" target="_blank">@DrkFX</a> <br/>https://github.com/DarknessFX/UEMaterials
+DarknessFX @ <a href="https://dfx.lv" target="_blank">https://dfx.lv</a> | X: <a href="https://twitter.com/DrkFX" target="_blank">@DrkFX</a> <br/>https://github.com/DarknessFX/TextAssetUE
