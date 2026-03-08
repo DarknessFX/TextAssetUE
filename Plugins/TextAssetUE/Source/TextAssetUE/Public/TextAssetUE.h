@@ -10,5 +10,5 @@ class TEXTASSETUE_API UTextAssetUE : public UObject {
 
 public:
   UPROPERTY(EditAnywhere, Category = "Text", meta = (MultiLine = true))
-  FString Content;
+  FText Content;
 };

@@ -68,7 +68,7 @@ void FAssetTypeActions_TextAssetUE::GetActions(const TArray<UObject*>& InObjects
 
               if (bSaved && OutFilenames.Num() > 0) {
                 const FString& SavePath = OutFilenames[0];
-                FFileHelper::SaveStringToFile(TextAsset->Content, *SavePath);
+                FFileHelper::SaveStringToFile(TextAsset->Content.ToString(), *SavePath);
               }
             }
             }),

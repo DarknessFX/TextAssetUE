@@ -63,12 +63,12 @@ TSharedRef<SWidget> FTextAssetUEEditorToolkit::CreateInnerWidget() {
     [
       SNew(SMultiLineEditableText)
         .Text_Lambda([this]() -> FText {
-          return EditingAsset.IsValid() ? FText::FromString(EditingAsset->Content) : FText::GetEmpty();
+          return EditingAsset.IsValid() ? EditingAsset->Content : FText::GetEmpty();
         })
         .OnTextChanged_Lambda([this](const FText& NewText) {
           if (EditingAsset.IsValid()) {
             EditingAsset->Modify();
-            EditingAsset->Content = NewText.ToString();
+            EditingAsset->Content = NewText;
           }
         })
         .AllowMultiLine(true)

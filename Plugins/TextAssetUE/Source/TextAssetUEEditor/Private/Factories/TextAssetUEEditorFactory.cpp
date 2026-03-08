@@ -17,8 +17,10 @@ UObject* UTextAssetUEEditorFactory::FactoryCreateNew(UClass* InClass, UObject* I
 
   if (UFactory::CurrentFilename.Len() > 0) {
     FString FilePath = UFactory::CurrentFilename;
-    if (FFileHelper::LoadFileToString(NewAsset->Content, *FilePath)) {
-      UE_LOG(LogTemp, Log, TEXT("Loaded %d chars into Content"), NewAsset->Content.Len());
+    FString newContent;
+    if (FFileHelper::LoadFileToString(newContent, *FilePath)) {
+      NewAsset->Content = FText::FromString(newContent);
+      UE_LOG(LogTemp, Log, TEXT("Loaded %d chars into Content"), newContent.Len());
     } else {
       UE_LOG(LogTemp, Warning, TEXT("Failed to load file content in fallback"));
     }
