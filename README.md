@@ -13,6 +13,7 @@
            DarknessFX @ https://dfx.lv | X: @DrkFX
 
 # TextAssetUE
+<img src=".git_img/TextAssetUE_banner.png" alt="TextAssetUE Banner" width="640" />
 
 ## About
 
