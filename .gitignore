@@ -1,6 +1,7 @@
 # Visual Studio 2015 user specific files
 .vs/
 config/
+.git_img/
 
 # Compiled Object files
 *.slo
