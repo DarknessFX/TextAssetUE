@@ -38,6 +38,12 @@ The original plugin was simple, lightweight, and extremely useful: a Notepad-lik
   - Font size
   - Text margin/padding around the editor area
   - Word wrap toggle
+- Reimport and Reimport from new file
+- Find, Replace and Replace All
+- Line and Column positions label
+- Appearance settings per asset
+
+<img src=".git_img/TextAssetUE_screenshot1.png" alt="TextAssetUE Screenshot" width="640" />
 
 ## Commentary
 
