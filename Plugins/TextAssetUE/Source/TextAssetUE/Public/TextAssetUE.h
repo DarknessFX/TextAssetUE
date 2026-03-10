@@ -9,28 +9,28 @@ USTRUCT(BlueprintType)
 struct FTextAssetAppearanceSettings {
   GENERATED_BODY()
 
-  UPROPERTY(EditAnywhere, Category = "Appearance")
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   bool bInheritBackground = true;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance", meta = (EditCondition = "!bInheritBackground"))
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance", meta = (EditCondition = "!bInheritBackground"))
   FLinearColor BackgroundColor = FLinearColor(0.08f, 0.08f, 0.08f, 1.0f);
 
-  UPROPERTY(EditAnywhere, Category = "Appearance")
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   bool bInheritTextColor = true;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance", meta = (EditCondition = "!bInheritTextColor"))
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance", meta = (EditCondition = "!bInheritTextColor"))
   FLinearColor TextColor = FLinearColor::White;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance", meta = (ClampMin = "8", ClampMax = "64"))
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance", meta = (ClampMin = "8", ClampMax = "64"))
   int32 FontSize = 14;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance", meta = (AllowedClasses = "/Script/Engine.Font"))
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance", meta = (AllowedClasses = "/Script/Engine.Font"))
   TSoftObjectPtr<UFont> FontAsset;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance")
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   bool bWordWrap = true;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance")
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   FMargin TextMargin = FMargin(4.0f);
 };
 
@@ -41,12 +41,12 @@ class TEXTASSETUE_API UTextAssetUE : public UObject {
 public:
   UTextAssetUE();
 
-  UPROPERTY(EditAnywhere, Category = "Text", meta = (MultiLine = true))
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Text", meta = (MultiLine = true))
   FText Content;
 
-  UPROPERTY(VisibleAnywhere, Instanced, Category = "ImportSettings", meta = (EditCondition = "false"))
+  UPROPERTY(VisibleAnywhere, Instanced, Category = "TextAssetUE|ImportSettings", meta = (EditCondition = "false"))
   UAssetImportData* AssetImportData;
 
-  UPROPERTY(EditAnywhere, Category = "Appearance")
+  UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   FTextAssetAppearanceSettings Appearance;
 };

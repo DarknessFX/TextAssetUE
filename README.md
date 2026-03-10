@@ -27,6 +27,7 @@ The original plugin was simple, lightweight, and extremely useful: a Notepad-lik
 
 - Create .txt-like assets directly in Content Browser
 - Full notepad editor inside UE (double-click TextAsset uasset)
+- Blueprint support
 - Multi-line editable text with undo/redo
 - Save/reload content automatically
 - Import .txt files via drag & drop or Import button
@@ -43,7 +44,8 @@ The original plugin was simple, lightweight, and extremely useful: a Notepad-lik
 - Line and Column positions label
 - Appearance settings per asset
 
-<img src=".git_img/TextAssetUE_screenshot1.png" alt="TextAssetUE Screenshot" width="640" />
+<img src=".git_img/TextAssetUE_screenshot1.png" alt="TextAssetUE Screenshot" width="640" /><br/>
+<img src=".git_img/TextAssetUE_screenshot2.png" alt="TextAssetUE Screenshot" width="640" />
 
 ## Commentary
 

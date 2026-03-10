@@ -3,6 +3,8 @@
 #include "Modules/ModuleManager.h"
 #include "Toolkits/TextAssetUEEditorToolkit.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogTextAssetUE, Log, All);
+
 class FTextAssetUEEditorModule : public IModuleInterface {
 public:
 	virtual void StartupModule() override;

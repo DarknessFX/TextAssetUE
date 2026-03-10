@@ -125,8 +125,6 @@ TSharedRef<SWidget> FTextAssetUEEditorToolkit::CreateInnerWidget() {
   FLinearColor BgColor = Settings.bInheritBackground ? FLinearColor(0.08f, 0.08f, 0.08f, 1.0f) : Settings.BackgroundColor;
   FLinearColor TxtColor = Settings.bInheritTextColor ? FLinearColor::White : Settings.TextColor;
 
-  UE_LOG(LogTemp, Log, TEXT("BgColor: R=%.3f G=%.3f B=%.3f A=%.3f | TxtColor: R=%.3f G=%.3f B=%.3f A=%.3f"), BgColor.R, BgColor.G, BgColor.B, BgColor.A, TxtColor.R, TxtColor.G, TxtColor.B, TxtColor.A);
-
   return SAssignNew(TextEditorPtr, STextAssetEditableText)
         .Text_Lambda([this]() -> FText {
           return EditingAsset.IsValid() ? EditingAsset->Content : FText::GetEmpty();

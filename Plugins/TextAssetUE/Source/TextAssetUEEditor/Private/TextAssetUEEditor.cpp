@@ -13,6 +13,7 @@
 #include "Containers/Ticker.h"
 #include "Widgets/Input/SNumericEntryBox.h"
 
+DEFINE_LOG_CATEGORY(LogTextAssetUE);
 #define LOCTEXT_NAMESPACE "TextAssetUEEditor"
 
 FTSTicker::FDelegateHandle TickHandle;

@@ -18,7 +18,9 @@ public class TextAssetUE : ModuleRules {
     });
 		
 		PrivateDependencyModuleNames.AddRange(new string[] {
-		});
+      "UnrealEd",
+      "AssetRegistry",
+    });
 		
 		DynamicallyLoadedModuleNames.AddRange(new string[] { });
 	}

@@ -2,6 +2,7 @@
 
 #include "TextAssetUEModule.h"
 
+DEFINE_LOG_CATEGORY(LogTextAssetUE);
 #define LOCTEXT_NAMESPACE "FTextAssetUEModule"
 
 void FTextAssetUEModule::StartupModule()

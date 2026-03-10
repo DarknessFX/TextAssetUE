@@ -20,7 +20,7 @@ void STextAssetEditableText::Construct(const FArguments& InArgs) {
     .IsReadOnly(false)
     .Font_Lambda([this]() { return CurrentFont; })
     .Margin(InArgs._Margin)
-    .Style(&FCoreStyle::Get().GetWidgetStyle<FEditableTextBoxStyle>("WhiteEditableTextBox"))
+    .Style(&FEditableTextBoxStyle::GetDefault())
     .BackgroundColor(InArgs._BackgroundColor)
     .ForegroundColor(InArgs._ForegroundColor)
     .AutoWrapText(InArgs._WordWrap)
