@@ -8,12 +8,13 @@ public class TextAssetUE : ModuleRules {
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicIncludePaths.AddRange(new string[] { });
-		PrivateIncludePaths.AddRange(new string[] { });
+		PrivateIncludePaths.AddRange(new string[] { "TextAssetUEEditor/Private" });
 		
 		PublicDependencyModuleNames.AddRange(new string[] {
 			"Core",
       "CoreUObject",
       "Engine",
+      "SlateCore",
     });
 		
 		PrivateDependencyModuleNames.AddRange(new string[] {

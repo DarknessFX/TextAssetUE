@@ -27,7 +27,10 @@ UObject* UTextAssetUEEditorFactory::FactoryCreateNew(UClass* InClass, UObject* I
   } else {
     UE_LOG(LogTemp, Warning, TEXT("FactoryCreateNew: no filename available"));
   }
-
+  if (!NewAsset->AssetImportData) {
+    NewAsset->AssetImportData = NewObject<UAssetImportData>(NewAsset, NAME_None, RF_NoFlags);
+  }
+  NewAsset->AssetImportData->Update(CurrentFilename);
   NewAsset->Modify();
   return NewAsset;
 }
@@ -46,4 +49,53 @@ bool UTextAssetUEEditorFactory::DoesSupportClass(UClass* Class) {
 
 bool UTextAssetUEEditorFactory::FactoryCanImport(const FString& Filename) {
   return FPaths::GetExtension(Filename, false).Equals(TEXT("txt"), ESearchCase::IgnoreCase);
+}
+
+bool UTextAssetUEEditorFactory::CanReimport(UObject* Obj, TArray<FString>& OutFilenames) {
+  UTextAssetUE* TextAsset = Cast<UTextAssetUE>(Obj);
+  if (TextAsset && TextAsset->AssetImportData) {
+    FString SourceFile = TextAsset->AssetImportData->GetFirstFilename();
+    if (!SourceFile.IsEmpty()) {
+      OutFilenames.Add(SourceFile);
+      return true;
+    }
+  }
+  return false;
+}
+
+void UTextAssetUEEditorFactory::SetReimportPaths(UObject* Obj, const TArray<FString>& NewReimportPaths) {
+  UTextAssetUE* TextAsset = Cast<UTextAssetUE>(Obj);
+  if (TextAsset && TextAsset->AssetImportData && NewReimportPaths.Num() > 0) {
+    TextAsset->AssetImportData->Update(NewReimportPaths[0]);
+  }
+}
+
+EReimportResult::Type UTextAssetUEEditorFactory::Reimport(UObject* Obj) {
+  UTextAssetUE* TextAsset = Cast<UTextAssetUE>(Obj);
+  if (!TextAsset || !TextAsset->AssetImportData) {
+    return EReimportResult::Failed;
+  }
+
+  FString Filename = TextAsset->AssetImportData->GetFirstFilename();
+  if (Filename.IsEmpty()) {
+    return EReimportResult::Failed;
+  }
+
+  FString NewContent;
+  if (!FFileHelper::LoadFileToString(NewContent, *Filename)) {
+    return EReimportResult::Failed;
+  }
+
+  TextAsset->Modify();
+  TextAsset->Content = FText::FromString(NewContent);
+  TextAsset->PostEditChange();
+  TextAsset->MarkPackageDirty();
+
+  TextAsset->AssetImportData->Update(Filename);
+
+  return EReimportResult::Succeeded;
+}
+
+int32 UTextAssetUEEditorFactory::GetPriority() const {
+  return 0;
 }

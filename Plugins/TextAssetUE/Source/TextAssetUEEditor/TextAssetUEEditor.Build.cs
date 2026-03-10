@@ -1,4 +1,4 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
 
@@ -16,12 +16,18 @@ public class TextAssetUEEditor : ModuleRules {
       "Engine",
       "TextAssetUE",
       "UnrealEd",
+      "EditorFramework",
+      "EditorSubsystem",
+      "StatusBar",
       "AssetTools",
       "Slate",
       "SlateCore",
       "EditorStyle",
       "PropertyEditor",
       "Settings",
+      "ToolMenus",
+      "InputCore",
+      "AppFramework",
     });
 		
 		PrivateDependencyModuleNames.AddRange(new string[]	{

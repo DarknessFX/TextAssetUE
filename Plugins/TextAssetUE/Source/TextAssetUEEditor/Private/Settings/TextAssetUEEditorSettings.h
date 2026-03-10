@@ -16,7 +16,7 @@ public:
   bool bInheritBackground = true;
 
   UPROPERTY(config, EditAnywhere, Category = "Appearance", meta = (EditCondition="!bInheritBackground"))
-  FLinearColor BackgroundColor = FLinearColor(0.1f, 0.1f, 0.1f, 1.0f);
+  FLinearColor BackgroundColor = FLinearColor(0.08f, 0.08f, 0.08f, 1.0f);
 
   UPROPERTY(config, EditAnywhere, Category = "Appearance")
   bool bInheritTextColor = true;
