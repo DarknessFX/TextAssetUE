@@ -67,13 +67,13 @@ Huge respect and gratitude to the author for creating such a useful plugin in th
 ## Installation
 
 1. Download or clone this repo
-2. Copy the `Plugins/TextAssetUE` folder to your project's `Plugins/` directory
+2. Copy the `Plugins/TextAssetUE` folder to your project's `Plugins/` directory (must be Unreal Engine C++ Project)
 3. Enable the plugin in your .uproject file or via Edit → Plugins
-4. Right-click the TextAssetUE_Sample.uproject and Generate Project Files.
+4. Right-click your .uproject and Generate Project Files.
 5. Open your project solution file (.sln)
 5. Run the project.
 
 ## License
 
 @MIT - Free for everyone and any use. <br/><br/>
-DarknessFX @ <a href="https://dfx.lv" target="_blank">https://dfx.lv</a> | X: <a href="https://twitter.com/DrkFX" target="_blank">@DrkFX</a> <br/>https://github.com/DarknessFX/TextAssetUE
+DarknessFX @ <a href="https://dfx.lv" target="_blank">https://dfx.lv</a> | X: <a href="https://x.com/DrkFX" target="_blank">@DrkFX</a> <br/>https://github.com/DarknessFX/TextAssetUE
