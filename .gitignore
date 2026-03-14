@@ -3,6 +3,8 @@
 config/
 .git_img/
 
+TODO.txt
+
 # Compiled Object files
 *.slo
 *.lo

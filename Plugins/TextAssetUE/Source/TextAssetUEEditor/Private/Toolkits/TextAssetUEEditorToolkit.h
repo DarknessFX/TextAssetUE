@@ -51,9 +51,19 @@ public:
 
   TWeakPtr<STextAssetEditableText> TextEditorPtr;
 
+
+  void ExtendToolbar();
+  void FillToolbar(FToolBarBuilder& ToolbarBuilder);
+  void OnFindReplaceClicked();
+  void OnAppearanceClicked();
+  TSharedPtr<STextBlock> GetCursorLabel() const { return CursorPositionLabel; };
+
 private:
   TWeakObjectPtr<UTextAssetUE> EditingAsset;
 
   FString LastFindText;
   FString LastReplaceText;
+
+  TSharedPtr<STextBlock> CursorPositionLabel;
+  bool UpdateCursorPositionText(float DeltaTime);
 };

@@ -8,8 +8,11 @@
 #include "ScopedTransaction.h"
 #include "Framework/Commands/GenericCommands.h"
 #include "Commands/TextAssetUEEditorCommands.h"
+#include "Containers/Ticker.h"
 
 #define LOCTEXT_NAMESPACE "TextAssetUEEditorToolkit"
+
+FTSTicker::FDelegateHandle TickHandle;
 
 void FTextAssetUEEditorToolkit::InitAssetEditor(const EToolkitMode::Type Mode, TSharedPtr<IToolkitHost> InitToolkitHost, FName AppIdentifier, const TSharedRef<FTabManager::FLayout>& InitLayout, bool bCreateDefaultStandaloneTab, bool bUserCreatedDocument, const TArray<UObject*>& ObjectsToEdit) {
   EditingAsset = Cast<UTextAssetUE>(ObjectsToEdit[0]);
@@ -27,6 +30,7 @@ void FTextAssetUEEditorToolkit::InitAssetEditor(const EToolkitMode::Type Mode, T
 
   FTextAssetUEEditorCommands::Register();
   RegisterCommands();
+  ExtendToolbar();
   //FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, AppIdentifier, DefaultLayout, bCreateDefaultStandaloneTab, bUserCreatedDocument, ObjectsToEdit);
   FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, AppIdentifier, DefaultLayout, bCreateDefaultStandaloneTab, true, ObjectsToEdit, true, true, TOptional<EAssetOpenMethod>());
 
@@ -46,6 +50,10 @@ void FTextAssetUEEditorToolkit::InitAssetEditor(const EToolkitMode::Type Mode, T
       }
     }));
   }
+
+  TickHandle = FTSTicker::GetCoreTicker().AddTicker(
+    FTickerDelegate::CreateRaw(this, &FTextAssetUEEditorToolkit::UpdateCursorPositionText), 0.5f
+  );
 }
 
 void FTextAssetUEEditorToolkit::RefreshTextWidget() {
@@ -91,6 +99,8 @@ void FTextAssetUEEditorToolkit::RegisterTabSpawners(const TSharedRef<FTabManager
 void FTextAssetUEEditorToolkit::UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager) {
   FAssetEditorToolkit::UnregisterTabSpawners(InTabManager);
   InTabManager->UnregisterTabSpawner("TextAssetContentTab");
+
+  FTSTicker::GetCoreTicker().RemoveTicker(TickHandle);
 }
 
 TSharedRef<SDockTab> FTextAssetUEEditorToolkit::SpawnContentTab(const FSpawnTabArgs& Args) {
@@ -349,6 +359,112 @@ void FTextAssetUEEditorToolkit::PerformReplaceAll() {
     Info.ExpireDuration = 3.0f;
     FSlateNotificationManager::Get().AddNotification(Info);
   }
+}
+
+
+//UToolMenus::RegisterStartupCallback(
+//  FSimpleMulticastDelegate::FDelegate::CreateRaw(
+//    this,
+//    &FTextAssetUEEditorModule::RegisterToolbar
+//  )
+//);
+//
+
+//FTextAssetUEEditorToolkit* FTextAssetUEEditorModule::FindActiveTextAssetToolkit() {
+//  if (!GEditor) return nullptr;
+//
+//  UAssetEditorSubsystem* Subsystem = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>();
+//  if (!Subsystem) return nullptr;
+//
+//  for (UObject* Asset : Subsystem->GetAllEditedAssets()) {
+//    IAssetEditorInstance* EditorInstance = Subsystem->FindEditorForAsset(Asset, false);
+//    if (!EditorInstance) continue;
+//    FTextAssetUEEditorToolkit* Toolkit = static_cast<FTextAssetUEEditorToolkit*>(EditorInstance);
+//    if (Toolkit->GetTabManager()->GetOwnerTab()->IsForeground()) {
+//      return Toolkit;
+//    }
+//  }
+//
+//  return nullptr;
+//}
+
+void FTextAssetUEEditorToolkit::ExtendToolbar() {
+  TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender());
+
+  ToolbarExtender->AddToolBarExtension(
+    "Asset",
+    EExtensionHook::After,
+    GetToolkitCommands(),
+    FToolBarExtensionDelegate::CreateRaw(
+      this,
+      &FTextAssetUEEditorToolkit::FillToolbar
+    )
+  );
+
+  AddToolbarExtender(ToolbarExtender);
+}
+
+void FTextAssetUEEditorToolkit::FillToolbar(FToolBarBuilder& ToolbarBuilder) {
+  ToolbarBuilder.BeginSection("TextAsset");
+
+  ToolbarBuilder.AddToolBarButton(
+    FUIAction(
+      FExecuteAction::CreateRaw(
+        this,
+        &FTextAssetUEEditorToolkit::OnFindReplaceClicked
+      )
+    ),
+    NAME_None,
+    LOCTEXT("FindReplaceBtn", "Find / Replace"),
+    LOCTEXT("FindReplaceTooltip", "Open find and replace dialog"),
+    FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Search")
+  );
+
+  ToolbarBuilder.AddSeparator();
+
+  ToolbarBuilder.AddToolBarButton(
+    FUIAction(
+      FExecuteAction::CreateRaw(
+        this,
+        &FTextAssetUEEditorToolkit::OnAppearanceClicked
+      )
+    ),
+    NAME_None,
+    LOCTEXT("AppearanceBtn", "Appearance"),
+    LOCTEXT("AppearanceTooltip", "Open the text appearance dialog"),
+    FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Settings")
+  );
+
+  ToolbarBuilder.AddSeparator();
+
+  ToolbarBuilder.AddWidget(
+    SNew(SBox)
+    .HAlign(HAlign_Right)
+    .VAlign(VAlign_Center)
+    [
+      SAssignNew(CursorPositionLabel, STextBlock)
+        .Text(LOCTEXT("CursorPos", "Ln 1, Col 1"))
+    ]
+  );
+
+  ToolbarBuilder.EndSection();
+}
+
+void FTextAssetUEEditorToolkit::OnFindReplaceClicked() {
+  FTextAssetUEEditorToolkit::OpenFindReplaceDialog();
+}
+
+void FTextAssetUEEditorToolkit::OnAppearanceClicked() {
+  FTextAssetUEEditorToolkit::OpenAppearanceDialog();
+}
+
+bool FTextAssetUEEditorToolkit::UpdateCursorPositionText(float DeltaTime) {
+  if (!CursorPositionLabel.IsValid()) { return true; }
+  if (TSharedPtr<STextAssetEditableText> Editor = TextEditorPtr.Pin()) {
+    CursorPositionLabel->SetText(Editor->GetCursorPositionText());
+  }
+
+  return true;
 }
 
 #undef LOCTEXT_NAMESPACE
