@@ -1,7 +1,6 @@
 #pragma once
 
 #include "AssetTypeActions_Base.h"
-#include "TextAssetUE.h"
 
 class FAssetTypeActions_TextAssetUE : public FAssetTypeActions_Base {
 public:

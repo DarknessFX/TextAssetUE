@@ -5,7 +5,7 @@
 #include "TextAssetUE_BP.generated.h"
 
 UCLASS()
-class TEXTASSETUE_API UTextAssetUE_BP : public UBlueprintFunctionLibrary {
+class TEXTASSETUEEDITOR_API UTextAssetUE_BP : public UBlueprintFunctionLibrary {
   GENERATED_BODY()
 
 public:

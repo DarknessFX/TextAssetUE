@@ -1,5 +1,4 @@
 #include "TextAssetUE_BP.h"
-#include "TextAssetUEModule.h"
 #include "EngineGlobals.h"
 #include "Misc/DateTime.h"
 #include "AssetToolsModule.h"

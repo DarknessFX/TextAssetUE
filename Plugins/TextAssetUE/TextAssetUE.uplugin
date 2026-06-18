@@ -3,7 +3,7 @@
   "Version": 1,
   "VersionName": "0.3.1",
   "FriendlyName": "TextAssetUE",
-  "Description": "Adds a text asset and editor for personal notes.",
+  "Description": "(Editor-only) Adds a text asset and editor for personal notes.",
   "Category": "Utilities",
   "CreatedBy": "DarknessFX",
   "CreatedByURL": "https://dfx.lv",
@@ -14,13 +14,9 @@
   "CanContainContent": false,
   "IsBetaVersion": true,
   "IsExperimentalVersion": false,
-  "Installed": false,
+  "IsEditorOnly": true,
+  "Installed": true,
   "Modules": [
-    {
-      "Name": "TextAssetUE",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    },
     {
       "Name": "TextAssetUEEditor",
       "Type": "Editor",

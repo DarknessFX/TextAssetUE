@@ -7,6 +7,7 @@
 #include "AssetToolsModule.h"
 #include "ToolMenus.h"
 #include "EditorReimportHandler.h"
+#include "TextAssetUE.h"
 
 FText FAssetTypeActions_TextAssetUE::GetName() const {
   return NSLOCTEXT("AssetTypeActions", "TextAssetUE", "Text Asset");

@@ -14,7 +14,6 @@ public class TextAssetUEEditor : ModuleRules {
       "Core",
       "CoreUObject",
       "Engine",
-      "TextAssetUE",
       "UnrealEd",
       "EditorFramework",
       "EditorSubsystem",

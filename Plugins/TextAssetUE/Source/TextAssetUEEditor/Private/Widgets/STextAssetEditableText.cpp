@@ -50,20 +50,21 @@ void STextAssetEditableText::SetSelection(int32 BeginIndex, int32 EndIndex) {
 }
 
 FTextLocation STextAssetEditableText::GetCursorLocation() const {
-  if (this) {
-    return SMultiLineEditableTextBox::GetCursorLocation();
+  if (!IsConstructed()) {
+    return FTextLocation();
   }
-  return FTextLocation();
+  return SMultiLineEditableTextBox::GetCursorLocation();
 }
 
 void STextAssetEditableText::SetCursorLocation(const FTextLocation& NewLocation) {
-  if (this) {
-    GoTo(NewLocation);
+  if (!IsConstructed()) {
+    return;
   }
+  GoTo(NewLocation);
 }
 
 int32 STextAssetEditableText::LocationToOffset(const FTextLocation& Location) const {
-  if (!this) {
+  if (!IsConstructed()) {
     return 0;
   }
 
@@ -87,8 +88,8 @@ int32 STextAssetEditableText::LocationToOffset(const FTextLocation& Location) co
 }
 
 FTextLocation STextAssetEditableText::OffsetToLocation(int32 AbsoluteOffset) const {
-  if (!this || AbsoluteOffset <= 0) {
-    return FTextLocation();
+  if (!IsConstructed() || AbsoluteOffset <= 0) {
+    return 0;
   }
 
   FString FullText = GetText().ToString();

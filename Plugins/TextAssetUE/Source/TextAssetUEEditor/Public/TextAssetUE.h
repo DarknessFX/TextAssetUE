@@ -34,8 +34,10 @@ struct FTextAssetAppearanceSettings {
   FMargin TextMargin = FMargin(4.0f);
 };
 
+#if WITH_EDITORONLY_DATA
+
 UCLASS(BlueprintType, HideCategories = (Object))
-class TEXTASSETUE_API UTextAssetUE : public UObject {
+class TEXTASSETUEEDITOR_API UTextAssetUE : public UObject {
   GENERATED_BODY()
 
 public:
@@ -50,3 +52,5 @@ public:
   UPROPERTY(EditAnywhere, Category = "TextAssetUE|Appearance")
   FTextAssetAppearanceSettings Appearance;
 };
+
+#endif

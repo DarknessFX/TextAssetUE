@@ -52,7 +52,7 @@ void FTextAssetUEEditorToolkit::InitAssetEditor(const EToolkitMode::Type Mode, T
   }
 
   TickHandle = FTSTicker::GetCoreTicker().AddTicker(
-    FTickerDelegate::CreateRaw(this, &FTextAssetUEEditorToolkit::UpdateCursorPositionText), 0.5f
+    FTickerDelegate::CreateSP(this, &FTextAssetUEEditorToolkit::UpdateCursorPositionText), 0.5f
   );
 }
 
