@@ -21,13 +21,13 @@
 
 The original plugin was simple, lightweight, and extremely useful: a Notepad-like text asset right inside Unreal Engine for quick notes, TODO lists, references, links, code snippets, credits lists, etc.
 
-**TextAssetUE** brings it back to life for Unreal Engine 5 (tested on 5.7.3), with modern C++ code, clean structure, and improved editor integration.
+**TextAssetUE** brings it back to life for Unreal Engine 5, with modern C++ code, clean structure, and improved editor integration.
 
 ## Features
 
 - Create .txt-like assets directly in Content Browser
 - Full notepad editor inside UE (double-click TextAsset uasset)
-- Blueprint support
+- Editor Utilities Blueprint support
 - Multi-line editable text with undo/redo
 - Save/reload content automatically
 - Import .txt files via drag & drop or Import button
@@ -49,7 +49,7 @@ The original plugin was simple, lightweight, and extremely useful: a Notepad-lik
 
 ## Commentary
 
-I kept the TextAsset plugin alive through multiple Unreal Engine versions, until recently when I rebuilt UE5.7.3 and deleted the Plugins folder, forgetting to save my copy of the TextAsset plugin... Thanks to the interest of dev friends who also like the plugin ( https://x.com/DrkFX/status/2028496389588557828 ) I took the time to re-write this plugin for Unreal Engine 5.
+I kept the original TextAsset plugin alive through multiple Unreal Engine versions, until recently when I rebuilt UE5.7.3 and deleted the Plugins folder, forgetting to save my copy of the TextAsset plugin... Thanks to the interest of dev friends who also like the plugin ( https://x.com/DrkFX/status/2028496389588557828 ), I took the time to re-write this plugin for Unreal Engine 5.
 
 ## Credits & Thanks
 
